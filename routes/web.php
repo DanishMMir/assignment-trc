@@ -33,17 +33,3 @@ Route::resource('users', 'UsersController', [
 Route::resource('users', 'UsersController', [
     'only' => ['index', 'show']
 ]);
-//Route::get('/admin', [DashboardController::class, 'indexAction'])->name('dashboard');
-//Route::get('/admin/property/list', [DashboardController::class, 'propertyListAction'])->name('property.list');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
-//
-//Route::get('/admin', [DashboardController::class, 'indexAction'])->name('dashboard');
-//Route::get('/admin/property/list', [DashboardController::class, 'propertyListAction'])->name('property.list');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
-//
-//Route::get('/admin', [DashboardController::class, 'indexAction'])->name('dashboard');
-//Route::get('/admin/property/list', [DashboardController::class, 'propertyListAction'])->name('property.list');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
-//Route::post('/admin/property/save', [DashboardController::class, 'updateProperty'])->name('property.save');
