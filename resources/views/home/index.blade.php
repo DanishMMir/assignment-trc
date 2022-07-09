@@ -1,105 +1,171 @@
-@extends('layouts.layout')
-@push('styles')
-    <!-- Custom styles for this template -->
-    <style>
-        :root {
-            --input-padding-x: .75rem;
-            --input-padding-y: .75rem;
-        }
-
-        html,
-        body {
-            height: 100%;
-        }
-
-        body {
-            display: -ms-flexbox;
-            display: -webkit-box;
-            display: flex;
-            -ms-flex-align: center;
-            -ms-flex-pack: center;
-            -webkit-box-align: center;
-            align-items: center;
-            -webkit-box-pack: center;
-            justify-content: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background-color: #f5f5f5;
-        }
-
-        .form-signin {
-            width: 100%;
-            max-width: 420px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-
-        .form-label-group {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .form-label-group > input,
-        .form-label-group > label {
-            padding: var(--input-padding-y) var(--input-padding-x);
-        }
-
-        .form-label-group > label {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            width: 100%;
-            margin-bottom: 0; /* Override default `<label>` margin */
-            line-height: 1.5;
-            color: #495057;
-            border: 1px solid transparent;
-            border-radius: .25rem;
-            transition: all .1s ease-in-out;
-        }
-
-        .form-label-group input::-webkit-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input:-ms-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::-ms-input-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::-moz-placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input::placeholder {
-            color: transparent;
-        }
-
-        .form-label-group input:not(:placeholder-shown) {
-            padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
-            padding-bottom: calc(var(--input-padding-y) / 3);
-        }
-
-        .form-label-group input:not(:placeholder-shown) ~ label {
-            padding-top: calc(var(--input-padding-y) / 3);
-            padding-bottom: calc(var(--input-padding-y) / 3);
-            font-size: 12px;
-            color: #777;
-        }
-    </style>
-@endpush
+@extends('layouts.guest')
+@section('title',' Dashboard')
 @section('content')
-    <div class="text-center mb-4">
-        @include('.layouts.common.flash-message')
-        <h1 class="h3 mb-3 font-weight-normal">Properties API Integration</h1>
-        <p>Get data from API and store it in database.</p>
-        <p>You can also do this via CLI using command</p>
-        <p><code>php artisan properties:get</code></p>
-        <p>You can also schedule this command via cron</p>
-        {{--        TODO: fetch properties in AJAX call--}}
-        <a class="btn btn-lg btn-primary btn-block" href="#">Get Properties Data</a>
+    <div class="content animate-panel">
+        <div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                                <a class="closebox"><i class="fa fa-times"></i></a>
+                            </div>
+                            HTML Snippet Data
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table cellpadding="1" cellspacing="1" id="html_snippet" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Snippet</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                                <a class="closebox"><i class="fa fa-times"></i></a>
+                            </div>
+                            Link Data
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table cellpadding="1" cellspacing="1" id="links" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Link</th>
+                                        <th>New Tab</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                                <a class="closebox"><i class="fa fa-times"></i></a>
+                            </div>
+                            PDF Data
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table cellpadding="1" cellspacing="1" id="files" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>File</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(function () {
+
+            // Initialize summernote plugin
+            $('.summernote').summernote();
+
+            var sHTML = $('.summernote').code();
+
+            console.log(sHTML);
+
+            $('.summernote1').summernote({
+                toolbar: [
+                    ['headline', ['style']],
+                    ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+                    ['textsize', ['fontsize']],
+                    ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
+                ]
+            });
+
+            $('.summernote2').summernote({
+                airMode: true,
+            });
+
+        });
+
+        $(document).ready(function() {
+            $('#html_snippet').dataTable( {
+                "processing": true,
+                "ajax": "{{ route('snippet.index') }}",
+                columns : [
+                    { data: 'title' },
+                    { data: 'description' },
+                    { data: 'snippet' },
+                ],
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+                buttons: [
+                    {extend: 'copy',className: 'btn-sm'},
+                    {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'print',className: 'btn-sm'}
+                ]
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('#links').dataTable( {
+                "processing": true,
+                "ajax": "{{ route('link.index') }}",
+                columns : [
+                    { data: 'title' },
+                    { data: 'link' },
+                    { data: 'new_tab' },
+                ],
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+                buttons: [
+                    {extend: 'copy',className: 'btn-sm'},
+                    {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'print',className: 'btn-sm'}
+                ]
+            } );
+        } );
+
+        $(document).ready(function() {
+            $('#files').dataTable( {
+                "processing": true,
+                "ajax": "{{ route('file.index') }}",
+                columns : [
+                    { data: 'title' },
+                    { data: 'file' },
+                ],
+                dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+                buttons: [
+                    {extend: 'copy',className: 'btn-sm'},
+                    {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
+                    {extend: 'print',className: 'btn-sm'}
+                ]
+            } );
+        } );
+
+    </script>
+@endpush

@@ -20,16 +20,20 @@ Route::get('/', function () {
 });
 
 Route::get('/',[HomeController::class, 'indexAction'])->name('home.index');
-Route::get('/admin', [AdminController::class, 'indexAction'])->name('admin.index');
+//Route::get('/admin', [AdminController::class, 'indexAction'])->name('admin.index');
 
-Route::resource('users', 'UsersController', [
-    'only' => ['index', 'show']
+Route::resource('snippet', 'SnippetController', [
+    'only' => ['index', 'store', 'update', 'destroy']
 ]);
 
-Route::resource('users', 'UsersController', [
-    'only' => ['index', 'show']
+Route::resource('link', 'LinkController', [
+    'only' => ['index', 'store', 'update', 'destroy']
 ]);
 
-Route::resource('users', 'UsersController', [
-    'only' => ['index', 'show']
+Route::resource('file', 'FileController', [
+    'only' => ['index', 'store', 'update', 'destroy']
 ]);
+
+Route::get('{any}', function () {
+    return view('admin.index');
+})->where('any', '.*');
