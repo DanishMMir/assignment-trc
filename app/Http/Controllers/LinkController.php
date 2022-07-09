@@ -15,6 +15,9 @@ class LinkController  extends BaseController
     public function index()
     {
         $links = LinkData::all();
+        $links = [
+            "data" => $links
+        ];
         return response()->json($links);
     }
 

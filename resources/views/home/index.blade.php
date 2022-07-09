@@ -15,7 +15,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table cellpadding="1" cellspacing="1" id="html_snippet" class="table table-bordered table-striped">
+                                <table id="html_snippet" class="table table-bordered table-striped" width="100%">
                                     <thead>
                                     <tr>
                                         <th>Title</th>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table cellpadding="1" cellspacing="1" id="links" class="table table-bordered table-striped">
+                                <table id="links" class="table table-bordered table-striped" width="100%">
                                     <thead>
                                     <tr>
                                         <th>Title</th>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
-                                <table cellpadding="1" cellspacing="1" id="files" class="table table-bordered table-striped">
+                                <table id="files" class="table table-bordered table-striped" width="100%">
                                     <thead>
                                     <tr>
                                         <th>Title</th>
@@ -113,7 +113,7 @@
                 "processing": true,
                 "ajax": "{{ route('snippet.index') }}",
                 columns : [
-                    { data: 'title' },
+                    { data: 'name' },
                     { data: 'description' },
                     { data: 'snippet' },
                 ],
@@ -134,8 +134,18 @@
                 "ajax": "{{ route('link.index') }}",
                 columns : [
                     { data: 'title' },
-                    { data: 'link' },
-                    { data: 'new_tab' },
+                    { data: "link", render : function(data, type, row) {
+                            let target = '';
+                            if (row.new_tab){
+                                target = 'target="_blank"';
+                            }
+                            return '<a href="'+data+'" '+target+'>'+data+'</a>'
+                        }
+                    },
+                    { data: "new_tab", render : function(data, type, row) {
+                            return data ? "Yes" : "No";
+                        }
+                    },
                 ],
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
@@ -154,7 +164,7 @@
                 "ajax": "{{ route('file.index') }}",
                 columns : [
                     { data: 'title' },
-                    { data: 'file' },
+                    { data: 'file_name' },
                 ],
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],

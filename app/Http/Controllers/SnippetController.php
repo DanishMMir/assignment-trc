@@ -15,6 +15,9 @@ class SnippetController  extends BaseController
     public function index()
     {
         $snippets = SnippetData::all();
+        $snippets = [
+            "data" => $snippets
+        ];
         return response()->json($snippets);
     }
 

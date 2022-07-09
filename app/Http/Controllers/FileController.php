@@ -15,6 +15,9 @@ class FileController  extends BaseController
     public function index()
     {
         $files = FileData::all();
+        $files = [
+            "data" => $files
+        ];
         return response()->json($files);
     }
 
