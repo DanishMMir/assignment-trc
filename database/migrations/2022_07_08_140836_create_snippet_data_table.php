@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('snippet_data', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
             $table->text('snippet');
             $table->timestamps();

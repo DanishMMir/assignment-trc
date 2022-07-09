@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LinkData;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class LinkController  extends BaseController
@@ -24,7 +25,7 @@ class LinkController  extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
@@ -39,7 +40,7 @@ class LinkController  extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param LinkData $link
      * @return \Illuminate\Http\JsonResponse
      */
@@ -58,11 +59,10 @@ class LinkController  extends BaseController
      * @param LinkData $link
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(LinkData $link)
+    public function destroy($link)
     {
+        $link = LinkData::find($link);
         $link->delete();
-        return response()->json([
-            'message'=>'Link Deleted Successfully!!'
-        ]);
+        return back();
     }
 }

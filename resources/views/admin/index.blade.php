@@ -10,27 +10,8 @@
 @push('scripts')
     <script>
         $(function () {
-
             // Initialize summernote plugin
             $('.summernote').summernote();
-
-            var sHTML = $('.summernote').code();
-
-            console.log(sHTML);
-
-            $('.summernote1').summernote({
-                toolbar: [
-                    ['headline', ['style']],
-                    ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-                    ['textsize', ['fontsize']],
-                    ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-                ]
-            });
-
-            $('.summernote2').summernote({
-                airMode: true,
-            });
-
         });
 
         $(document).ready(function() {
@@ -38,15 +19,15 @@
                 "processing": true,
                 "ajax": "{{ route('snippet.index') }}",
                 columns : [
-                    { data: 'name' },
+                    { data: 'title' },
                     { data: 'description' },
                     { data: 'snippet' },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/admin/property/show/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/snippet/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/admin/property/delete/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
+                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/api/snippet/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
                         }
                     },
                 ],
@@ -80,11 +61,11 @@
                         }
                     },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/admin/property/show/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/link/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/admin/property/delete/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
+                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/api/link/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
                         }
                     },
                 ],
@@ -107,11 +88,11 @@
                     { data: 'title' },
                     { data: 'file_name' },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/admin/property/show/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/file/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/admin/property/delete/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
+                            return '<button class="btn btn-danger btn-xs center-block" onclick="location.href=\'/api/file/'+data+'\';" title="Delete the record" type="button"><i class="fa fa-trash"></i></button>';
                         }
                     },
                 ],

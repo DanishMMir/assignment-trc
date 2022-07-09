@@ -27,24 +27,28 @@
                                             <div class="modal-body">
                                                 <form method="get" class="form-horizontal">
                                                     <div class="form-group">
-                                                        <label class="col-sm-1 control-label">Title</label>
+                                                        <label class="col-sm-2 control-label">Title</label>
 
-                                                        <div class="col-sm-3"><input type="text" class="form-control"></div>
+                                                        <div class="col-sm-10"><input type="text" v-model="link_data.title" class="form-control"></div>
+                                                    </div>
 
+                                                    <div class="form-group">
+                                                        <label class="col-sm-2 control-label">Link</label>
 
-                                                        <label class="col-sm-1 control-label">Link</label>
+                                                        <div class="col-sm-10"><input type="text" v-model="link_data.link" class="form-control"></div>
+                                                    </div>
 
-                                                        <div class="col-sm-3"><input type="text" class="form-control"></div>
+                                                    <div class="form-group">
 
-                                                        <div class="col-sm-3">
-                                                            <label class="checkbox-inline"> <input type="checkbox" class="i-checks"> Open in a new tab </label>
+                                                    <div class="col-sm-10">
+                                                            <label class="checkbox-inline"> <input type="checkbox" id="new_tab" class="i-checks"> Open in a new tab </label>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" class="btn btn-primary" @click="store">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
@@ -74,6 +78,28 @@
 <script>
 export default {
     setup: () => ({
-    })
+        link_data:{
+            title:"",
+            link:"",
+            new_tab:false,
+        }
+    }),
+    methods: {
+        async store(){
+            if($("#new_tab").is(':checked')){
+                this.link_data.new_tab = true;
+            } else {
+                this.link_data.new_tab = false;
+            }
+            if (!/^https?:\/\//i.test( this.link_data.link)) {
+                this.link_data.link = 'https://' + this.link_data.link;
+            }
+            await this.axios.post('/api/link',this.link_data).then(response=>{
+                window.location.reload()
+            }).catch(error=>{
+                console.log(error)
+            })
+        }
+    }
 }
 </script>

@@ -113,7 +113,7 @@
                 "processing": true,
                 "ajax": "{{ route('snippet.index') }}",
                 columns : [
-                    { data: 'name' },
+                    { data: 'title' },
                     { data: 'description' },
                     { data: 'snippet' },
                 ],

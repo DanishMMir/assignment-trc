@@ -25,33 +25,29 @@
                                                 <small class="font-bold">Add / Edit HTML snippet data</small>
                                             </div>
                                             <div class="modal-body">
-                                                <form method="get" class="form-horizontal">
-                                                    <div class="form-group"><label class="col-lg-2 control-label">Name</label>
+                                                <form method="get" @submit.prevent="store" class="form-horizontal">
+                                                    <div class="form-group"><label class="col-lg-2 control-label">Title</label>
 
-                                                        <div class="col-lg-10"><input type="text" class="form-control"></div>
+                                                        <div class="col-lg-10"><input type="text" name="name" v-model="snippet_data.title" class="form-control"></div>
                                                     </div>
 
                                                     <div class="form-group"><label class="col-lg-2 control-label">Description</label>
 
-                                                        <div class="col-lg-10"><textarea class="form-control"></textarea></div>
+                                                        <div class="col-lg-10"><textarea class="form-control" v-model="snippet_data.description" name="description"></textarea></div>
                                                     </div>
 
                                                     <div class="form-group"><label class="col-lg-2 control-label">Snippet</label>
                                                         <div class="col-lg-10">
-                                                            <div class="summernote">
-                                                                <h3>Hello Jonathan! </h3>
-                                                                <p>dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the dustrys</strong> standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more
-                                                                    <br/><br/>All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-                                                                    recently with.</p><p>Mark Smith
-                                                            </p>
+                                                            <div class="summernote" id="summernote">
                                                             </div>
+                                                            <input type="hidden" id="snippet" name="snippet">
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                <button type="button" class="btn btn-primary" @click="store">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
@@ -81,6 +77,21 @@
 <script>
 export default {
     setup: () => ({
-    })
+        snippet_data:{
+            title:"",
+            description:"",
+            snippet:"",
+        }
+    }),
+    methods: {
+        async store(){
+            this.snippet_data.snippet = $('.summernote').code();
+            await this.axios.post('/api/snippet',this.snippet_data).then(response=>{
+                window.location.reload()
+            }).catch(error=>{
+                console.log(error)
+            })
+        }
+    }
 }
 </script>

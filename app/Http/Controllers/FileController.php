@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FileData;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Routing\Controller as BaseController;
 
 class FileController  extends BaseController
@@ -24,12 +26,20 @@ class FileController  extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $file = FileData::create($request->post());
+        $title = $request->get('title');
+        $file = $request->file('image');
+
+        //Move Uploaded File
+        $destinationPath = storage_path('uploads');
+        $file->move($destinationPath,$file->getClientOriginalName());
+
+        $file = FileData::create(['title' => $title, 'file_name' => $file->getClientOriginalName()]);
+
         return response()->json([
             'message'=>'File Uploaded Successfully!!',
             'file'=> $file
@@ -39,7 +49,7 @@ class FileController  extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param FileData $file
      * @return \Illuminate\Http\JsonResponse
      */
@@ -58,11 +68,12 @@ class FileController  extends BaseController
      * @param FileData $file
      * @return \Illuminate\Http\JsonResponse
      */
-    public function destroy(FileData $file)
+    public function destroy($file)
     {
+        $file= FileData::find($file);
+        $filePath = storage_path('uploads/'.$file->file_name);
+        File::delete($filePath);
         $file->delete();
-        return response()->json([
-            'message'=>'File Deleted Successfully!!'
-        ]);
+        return back();
     }
 }
