@@ -18,12 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/',[HomeController::class, 'indexAction'])->name('home.index');
-//Route::get('/admin', [AdminController::class, 'indexAction'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'indexAction'])->name('admin.index');
 
 Route::resource('snippet', SnippetController::class, [
     'only' => ['index', 'store', 'update', 'destroy']
@@ -36,7 +32,3 @@ Route::resource('link', LinkController::class, [
 Route::resource('file', FileController::class, [
     'only' => ['index', 'store', 'update', 'destroy']
 ]);
-
-Route::get('{any}', function () {
-    return view('admin.index');
-})->where('any', '.*');

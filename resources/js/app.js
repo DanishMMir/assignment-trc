@@ -1,23 +1,15 @@
 require('./bootstrap');
-import vue from 'vue'
-window.Vue = vue;
+import {createApp} from 'vue'
 
-import Admin from './components/Admin.vue';
-import VueRouter from 'vue-router';
-import VueAxios from 'vue-axios';
-import axios from 'axios';
-import {routes} from './routes';
+import SnippetData from './components/SnippetData.vue'
+import LinkData from './components/LinkData.vue'
+import FileData from './components/FileData.vue'
 
-Vue.use(VueRouter);
-Vue.use(VueAxios, axios);
+const app = createApp({})
 
-const router = new VueRouter({
-    mode: 'history',
-    routes: routes
-});
+app.component('snippet-data', SnippetData)
+app.component('link-data', LinkData)
+app.component('file-data', FileData)
 
-const admin = new Vue({
-    el: '#wrapper',
-    router: router,
-    render: h => h(Admin),
-});
+app.mount('#app')
+
