@@ -1,64 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About Assignment
 
-## About Laravel
+The assignment was pretty straight forward. Was easy to implement and work on. Following are the key aspects you should consider while evaluating the assignment
+- Minimum or no styling has been done.
+- Only focussed on the functional aspect.
+- **All core functions defined** **in assignment have been completed**.
+- No auth has been implemented (as advised in assignment).
+- Blade Files used for `/` (Home) page.
+- Vue components used for `/admin` (admin) page.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Environment
+- php 8.0
+- Laravel 9
+- Mysql 8
+- Vue 3
+- Inbuilt dev server
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Libraries / templates
+- No external libraries
+- used homer template assets (at some places)
+- used bootstrap (Mostly)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## How to use
+- pull main branch from github
+- install dependencies by running `composer install`
+- install vue dependencies by running `npm install`
+- Build assets by running `npm run dev`
+- copy example env to env `cp .env.example .env`
+- generate app key `php artisan key:generate`
+- create a database named `remote_company` or something else
+- Add your DB creds to .env
+- run migrations `php artisan migrate`
+- start the inbuilt dev server `php artisan serve`
+- That is all - app should be working at this point
+- try to add a few records on `/admin` side.
 
-## Learning Laravel
+## What has been done
+- A homepage at `/` to view data. -  **Developed in Blade**
+  - Snippet data can be viewed in datatable format with working search, sort and pagination.
+  - Link data can be viewed in datatable format with working search, sort and pagination.
+    - Links in table can be clicked on and will open as per `open in new tab` flag
+  - File data can be viewed in datatable format with working search, sort and pagination.
+    - File can also be downloaded by clicking on the download icon against each row.
+  - 
+- An `/admin` page to view / add / edit / delete data. - **Developed in Vue**
+    - Snippet data can be viewed / added / edited / deleted.
+    - Link data can be viewed / added / edited / deleted.
+    - File data can be viewed / added / edited / deleted.
+      - On file update old file is being removed and new uploaded and linked to the record.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Main Functionality
+- start inbuilt dev server `php artisan serve`
+- head over to homepage `127.0.0.1:8000`
+- here you can view the data for different sections.
+- You can sort them, search in them, and use pagination to go across pages
+- There is an admin side (without any auth)
+- head over to admin dashboard `127.0.0.1:8000/admin`
+- On the dashboard (no / minimum styling), there are tables with records of data
+- You can sort them, search in them, and use pagination to go across pages
+- There are also two action buttons on each row one to edit and one to delete a row.
+- clicking on the edit button will take you to the edit screen where you can edit the data
+- clicking on the delete icon will delete the row.
+- There is an add new button in each section to add new records via a modal.
 
-## Laravel Sponsors
+## Improvements that can be made
+- Auth can be implemented
+- A proper design / template can be used
+- Proper guards for frontend and admin side can be used
+- proper frontend and backend validation
+- tests can be written
+- static analysis using phpstan to reduce snags
+- quality tools can be run to check for syntactic issues
+- Eloquent Relations can be used
+- proper AJAX can be used to improve UX
+- Thumbnail can be shown on edit page once uploaded
+- repositories can be used to separate logic
+- many more
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## What has not been done / was unclear
+- No validation has been used.. JQuery for client side and Laravel `Validator` for serverside validation can be used.
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Main aspects
+- Used standard Laravel structure
+- Most code in Http, Models, Views, components folders
