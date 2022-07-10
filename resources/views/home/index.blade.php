@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title',' Dashboard')
+@section('title',' Home')
 @section('content')
     <div class="content animate-panel">
         <div>

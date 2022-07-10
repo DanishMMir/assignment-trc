@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\FileData;
-use App\Models\LinkData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Routing\Controller as BaseController;
@@ -28,7 +27,7 @@ class FileController  extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function edit($file)
     {
@@ -94,7 +93,7 @@ class FileController  extends BaseController
      * Remove the specified resource from storage.
      *
      * @param FileData $file
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     public function destroy($file)
     {

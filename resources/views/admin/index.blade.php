@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title',' Dashboard')
+@section('title',' Admin')
 @section('content')
     <div id="app">
         <snippet-data></snippet-data>
