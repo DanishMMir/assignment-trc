@@ -58,7 +58,10 @@ class SnippetController  extends BaseController
     {
         $snippet = SnippetData::find($snippet);
         $snippet->fill($request->post())->save();
-        return redirect(route('admin.index'));
+        return response()->json([
+            'message'=>'Snippet Updated Successfully!!',
+            'snippet'=> $snippet
+        ]);
     }
 
     /**

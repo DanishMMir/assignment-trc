@@ -85,30 +85,6 @@
 @endsection
 @push('scripts')
     <script>
-        $(function () {
-
-            // Initialize summernote plugin
-            $('.summernote').summernote();
-
-            var sHTML = $('.summernote').code();
-
-            console.log(sHTML);
-
-            $('.summernote1').summernote({
-                toolbar: [
-                    ['headline', ['style']],
-                    ['style', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
-                    ['textsize', ['fontsize']],
-                    ['alignment', ['ul', 'ol', 'paragraph', 'lineheight']],
-                ]
-            });
-
-            $('.summernote2').summernote({
-                airMode: true,
-            });
-
-        });
-
         $(document).ready(function() {
             $('#html_snippet').dataTable( {
                 "processing": true,

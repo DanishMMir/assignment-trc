@@ -53,13 +53,16 @@ class LinkController  extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param LinkData $snippet
+     * @param LinkData $link
      */
     public function update(Request $request, $link)
     {
         $link = LinkData::find($link);
         $link->fill($request->post())->save();
-        return redirect(route('admin.index'));
+        return response()->json([
+            'message'=>'Link Updated Successfully!!',
+            'link'=> $link
+        ]);
     }
 
     /**

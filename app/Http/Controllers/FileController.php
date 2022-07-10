@@ -84,7 +84,10 @@ class FileController  extends BaseController
         $file->file_name = $newFile->getClientOriginalName();
 
         $file->save();
-        return redirect(route('admin.index'));
+        return response()->json([
+            'message'=>'File Updated Successfully!!',
+            'file'=> $file
+        ]);
     }
 
     /**
