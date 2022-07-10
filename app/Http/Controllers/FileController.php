@@ -76,4 +76,10 @@ class FileController  extends BaseController
         $file->delete();
         return back();
     }
+
+    public function download($file){
+        $file= FileData::find($file);
+        $filePath = storage_path('uploads/'.$file->file_name);
+        return response()->download($filePath);
+    }
 }

@@ -30,3 +30,4 @@ Route::get('/file', [FileController::class, 'index'])->name('file.index');
 Route::post('/file', [FileController::class, 'store'])->name('file.store');
 Route::get('/file/{id}', [FileController::class, 'destroy'])->name('file.destroy');
 Route::post('/file/{id}', [FileController::class, 'update'])->name('file.update');
+Route::get('/file/download/{id}', [FileController::class, 'download'])->name('file.download');

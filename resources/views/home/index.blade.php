@@ -70,6 +70,7 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>File</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -120,7 +121,6 @@
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
                 buttons: [
-                    {extend: 'copy',className: 'btn-sm'},
                     {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'print',className: 'btn-sm'}
@@ -150,7 +150,6 @@
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
                 buttons: [
-                    {extend: 'copy',className: 'btn-sm'},
                     {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'print',className: 'btn-sm'}
@@ -165,11 +164,14 @@
                 columns : [
                     { data: 'title' },
                     { data: 'file_name' },
+                    { data: "id", render : function(data, type, row) {
+                            return '<button class="btn btn-primary btn-xs center-block" data-toggle="modal" onclick="location.href=\'/api/file/download/'+data+'\';" type="button"><i class="fa fa-download"></i></button>';
+                        }
+                    },
                 ],
                 dom: "<'row'<'col-sm-4'l><'col-sm-4 text-center'B><'col-sm-4'f>>tp",
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
                 buttons: [
-                    {extend: 'copy',className: 'btn-sm'},
                     {extend: 'csv',title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'pdf', title: 'ExampleFile', className: 'btn-sm'},
                     {extend: 'print',className: 'btn-sm'}
