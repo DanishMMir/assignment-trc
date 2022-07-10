@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FileData;
+use App\Models\LinkData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Routing\Controller as BaseController;
@@ -21,6 +22,18 @@ class FileController  extends BaseController
             "data" => $files
         ];
         return response()->json($files);
+    }
+
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit($file)
+    {
+        $file = FileData::find($file);
+        return view('admin.edit',['file' => $file, 'view' => 'file']);
     }
 
     /**
@@ -51,15 +64,27 @@ class FileController  extends BaseController
      *
      * @param Request $request
      * @param FileData $file
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, FileData $file)
+    public function update(Request $request, $file)
     {
-        $file->fill($request->post())->save();
-        return response()->json([
-            'message'=>'File Updated Successfully!!',
-            'file'=>$file
-        ]);
+        $file = FileData::find($file);
+
+        $title = $request->get('title');
+        $newFile = $request->file('image');
+
+        // delete old file
+        $filePath = storage_path('uploads/'.$file->file_name);
+        File::delete($filePath);
+
+        //Move Uploaded File
+        $destinationPath = storage_path('uploads');
+        $newFile->move($destinationPath,$newFile->getClientOriginalName());
+
+        $file->title = $title;
+        $file->file_name = $newFile->getClientOriginalName();
+
+        $file->save();
+        return redirect(route('admin.index'));
     }
 
     /**

@@ -82,8 +82,6 @@ export default {
             let imageFile = document.querySelector('#file');
             formData.append("title", this.file_data.title);
             formData.append("image", imageFile.files[0]);
-            console.log('>> formData >> ', formData);
-            console.log('>> image >> ', imageFile.files[0]);
             await this.axios.post('/api/file',formData,{
                 headers: {'Content-Type': 'multipart/form-data'}
             }).then(response=>{

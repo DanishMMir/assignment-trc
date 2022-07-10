@@ -23,6 +23,17 @@ class SnippetController  extends BaseController
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit($snippet)
+    {
+        $snippet = SnippetData::find($snippet);
+        return view('admin.edit',['snippet' => $snippet, 'view' => 'snippet']);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -42,15 +53,12 @@ class SnippetController  extends BaseController
      *
      * @param Request $request
      * @param SnippetData $snippet
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, SnippetData $snippet)
+    public function update(Request $request, $snippet)
     {
+        $snippet = SnippetData::find($snippet);
         $snippet->fill($request->post())->save();
-        return response()->json([
-            'message'=>'Snippet Updated Successfully!!',
-            'snippet'=>$snippet
-        ]);
+        return redirect(route('admin.index'));
     }
 
     /**

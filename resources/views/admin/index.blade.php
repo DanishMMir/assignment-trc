@@ -23,7 +23,7 @@
                     { data: 'description' },
                     { data: 'snippet' },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/snippet/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/snippet/'+data+'/edit\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {
@@ -60,7 +60,7 @@
                         }
                     },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/link/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/link/'+data+'/edit\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {
@@ -86,7 +86,7 @@
                     { data: 'title' },
                     { data: 'file_name' },
                     { data: "id", render : function(data, type, row) {
-                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/api/file/'+data+'\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
+                            return '<button class="btn btn-primary btn-xs center-block" onclick="location.href=\'/file/'+data+'/edit\';" title="Edit the record" type="button"><i class="fa fa-pencil"></i></button>';
                         }
                     },
                     {data: "id", render : function(data, type, row) {

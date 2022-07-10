@@ -22,6 +22,18 @@ class LinkController  extends BaseController
         return response()->json($links);
     }
 
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function edit($link)
+    {
+        $link = LinkData::find($link);
+        return view('admin.edit',['link' => $link, 'view' => 'link']);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -41,16 +53,13 @@ class LinkController  extends BaseController
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param LinkData $link
-     * @return \Illuminate\Http\JsonResponse
+     * @param LinkData $snippet
      */
-    public function update(Request $request, LinkData $link)
+    public function update(Request $request, $link)
     {
+        $link = LinkData::find($link);
         $link->fill($request->post())->save();
-        return response()->json([
-            'message'=>'Link Updated Successfully!!',
-            'link'=>$link
-        ]);
+        return redirect(route('admin.index'));
     }
 
     /**

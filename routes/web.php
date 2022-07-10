@@ -20,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class, 'indexAction'])->name('home.index');
 Route::get('/admin', [AdminController::class, 'indexAction'])->name('admin.index');
+Route::get('/snippet/{id}/edit', [SnippetController::class, 'edit'])->name('snippet.edit');
+Route::get('/link/{id}/edit', [LinkController::class, 'edit'])->name('snippet.edit');
+Route::get('/file/{id}/edit', [FileController::class, 'edit'])->name('snippet.edit');
